@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ author.name }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <div class="row mt-5 justify-content-md-center">
+
+        <div class="col-md-8">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <img src="{{ author.image.url }}" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-md-6">
+                    <h3>{{ author.name }}</h3>
+                    <ul>
+                        <li><span><b>Год рождения:</b> {{ author.birthday }}</span></li>
+
+                        {% if author.death %}
+                        <li><span><b>Год смерти:</b> {{ author.death }}</span></li>
+                        {% endif %}
+
+                        <li><span><b>Произведения:</b></span></li>
+
+                        {% for book in author.book_set.all %}
+                        <li>
+                            <a href="{{ book.get_absolute_url }}">{{ book }},</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row mt-3">
+                <div class="col px-3">
+                    <p>{{ author.desc }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

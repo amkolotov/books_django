@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% load static recaptcha3 %}
+
+<html lang="ru">
+<head>
+
+    <title>
+        {% block title %}
+
+        {% endblock %} | Booker
+    </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+
+    {% recaptcha_init %}
+    {% recaptcha_ready action_name='homepage' %}
+
+</head>
+
+<body>
+    {% include 'includes/header.html' %}
+    {% block content %}
+    {% endblock %}
+
+    {% include 'includes/footer.html' %}
+
+
+</body>
+</html>

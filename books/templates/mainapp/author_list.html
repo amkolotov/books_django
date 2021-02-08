@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row mt-5">
+
+        <div class="col-md-4">
+            {% include 'includes/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8">
+
+            {% for author in author_list %}
+            <div class="row mt-3">
+
+                <div class="col-md-3">
+                    <a href="{% url 'mainapp:author' author.name %}">
+                        <img src="{{ author.image.url }}" class="img-fluid" alt="{{ author.name }}">
+                    </a>
+                </div>
+
+                <div class="col-md-9 align-self-center">
+                    <a href="{% url 'mainapp:author' author.name %}"><h3>{{ author.name }}</h3></a>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,47 @@
+{% load books_tags %}
+
+<div class="side-bar">
+
+    <h3>Поиск книги</h3>
+
+    <form class="form-inline my-2 my-lg-0" action="{% url 'mainapp:search' %}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Введите название" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+    </form>
+
+    <form action="{% url 'mainapp:filter' %}" method="get">
+
+        <div class="left-side my-4">
+            <h3 class="sear-head editContent">Жанры</h3>
+            <ul class="w3layouts-box-list">
+                {% get_genres as genres %}
+                {% for genre in genres %}
+                <li class="editContent">
+                    <input type="checkbox" class="checked" name="genre" value="{{ genre.id }}">
+                    <span class="span editContent">{{ genre.name}}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="left-side">
+            <h3 class="sear-head editContent">Год</h3>
+            <ul class="w3layouts-box-list">
+
+                {% for year_dict in view.get_years %}
+                <li class="editContent">
+                    <input type="checkbox" class="checked" name="year" value="{{ year_dict.year }}">
+                    <span class="span editContent">{{ year_dict.year }}</span>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+
+    </form>
+
+    {% get_last_books count=3 %}
+
+</div>

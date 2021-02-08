@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load books_tags %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row mt-5">
+
+        <div class="col-md-4">
+            {% include 'includes/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                {% for book in book_list %}
+                <div class="col-md-6">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="{{ book.get_absolute_url }}" style="text-decoration: none">
+                            <img src="{{ book.cover.url }}" class="card-img-top" alt="{{ book.name }}">
+                        </a>
+                        <div class="card-body">
+                            <a href="{{ book.get_absolute_url }}" style="text-decoration: none">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                            </a>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ book.tagline }}</li>
+                            <li class="list-group-item">
+                                <div class="row justify-content-center">
+                                    <ul class="stars">
+                                        {% get_star_range as range %}
+                                        {% for star in range %}
+                                        {% get_rating book.id as rating %}
+                                        {% if star <= rating %}
+                                            <li><span class="fa fa-star" aria-hidden="true"></span></a></li>
+<!--                                        <li><span class="fa fa-star-half-o" aria-hidden="true"></span></a></li>-->
+                                        {% else %}
+                                            <li><span class="fa fa-star-o" aria-hidden="true"></span></a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/pagination.html' %}
+
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,7 @@
+<form action="{% url 'contactuser:index' %}" method="post"  class="form-inline">
+    <div class="form-group">
+        {% csrf_token %}
+        {{ contact_form }}
+        <button class="btn btn-success" type="submit">Отправить</button>
+    </div>
+</form>

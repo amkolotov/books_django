@@ -1,4 +1,5 @@
 source/
+settings_prod.py
 django_movie_template-master/
 amk_books.txt
 .idea/

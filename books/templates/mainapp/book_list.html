@@ -16,7 +16,7 @@
             <div class="row">
                 {% for book in book_list %}
                 <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4 shadow-sm text-center">
                         <a href="{{ book.get_absolute_url }}" style="text-decoration: none">
                             <img src="{{ book.cover.url }}" class="card-img-top" alt="{{ book.name }}">
                         </a>
@@ -26,14 +26,14 @@
                             </a>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ book.tagline }}</li>
+                            <li class="list-group-item"><<{{ book.tagline }}>></li>
                             <li class="list-group-item">
                                 <div class="row justify-content-center">
                                     <ul class="stars">
                                         {% get_star_range as range %}
                                         {% for star in range %}
                                         {% get_rating book.id as rating %}
-                                        {% if star <= rating %}
+                                        {% if star < rating %}
                                             <li><span class="fa fa-star" aria-hidden="true"></span></a></li>
 <!--                                        <li><span class="fa fa-star-half-o" aria-hidden="true"></span></a></li>-->
                                         {% else %}

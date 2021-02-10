@@ -2,7 +2,7 @@
 
 <div class="side-bar">
 
-    <h3>Поиск книги</h3>
+    <h4>ПОИСК КНИГИ</h4>
 
     <form class="form-inline my-2 my-lg-0" action="{% url 'mainapp:search' %}">
         <input class="form-control mr-sm-2" type="search" placeholder="Введите название" name="search">
@@ -11,27 +11,29 @@
 
     <form action="{% url 'mainapp:filter' %}" method="get">
 
+        <hr>
+
         <div class="left-side my-4">
-            <h3 class="sear-head editContent">Жанры</h3>
+            <h4 class="sear-head editContent">ЖАНРЫ</h4>
             <ul class="w3layouts-box-list">
                 {% get_genres as genres %}
                 {% for genre in genres %}
                 <li class="editContent">
                     <input type="checkbox" class="checked" name="genre" value="{{ genre.id }}">
-                    <span class="span editContent">{{ genre.name}}</span>
+                    <span class="span editContent"> {{ genre.name }}</span>
                 </li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="left-side">
-            <h3 class="sear-head editContent">Год</h3>
+            <h4 class="sear-head editContent">ГОД</h4>
             <ul class="w3layouts-box-list">
 
                 {% for year_dict in view.get_years %}
                 <li class="editContent">
                     <input type="checkbox" class="checked" name="year" value="{{ year_dict.year }}">
-                    <span class="span editContent">{{ year_dict.year }}</span>
+                    <span class="span editContent"> {{ year_dict.year }}</span>
                 </li>
                 {% endfor %}
 
@@ -41,6 +43,8 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
 
     </form>
+
+    <hr>
 
     {% get_last_books count=3 %}
 

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load books_tags %}
 
 {% block title %}
-    {{ book.name }}
+{{ book.name }}
 {% endblock %}
 
 {% block content %}
@@ -23,23 +24,34 @@
                 <div class="col-md-6">
                     <h3>{{ book.title }}</h3>
                     <ul>
-                        <li><span><b>Год:</b> {{ book.year }}</span></li>
-                        <li><span><b>Слоган:</b> {{ book.tagline }}</span>
+                        <li>
+                            <span><b>Год:</b> {{ book.year }}</span>
                         </li>
-                        <li><span><b>Автор:</b>
+                        <li>
+                            <span><b>Слоган:</b> {{ book.tagline }}</span>
+                        </li>
+                        <li>
+                            <span><b>Автор:</b>
                             <a href="{% url 'mainapp:author' book.author.name %}">{{ book.author }}</a>
-                        </span></li>
-                        <li><span><b>Жанр:</b>
+                            </span>
+                        </li>
+                        <li>
+                            <span><b>Жанр:</b>
                             {% for genre in book.genres.all %}
                                 {{ genre }},
                             {% endfor %}
-                        </span>
+                            </span>
                         </li>
-                        <li><span><b>Количество страниц:</b> {{ book.num_of_pages }}</span>
-                        </li>
-                        <li><span><b>Издательство:</b> {{ book.publisher }}</span></li>
                         <li>
-                            <b>Рейтинг:</b>
+                            <span><b>Количество страниц:</b> {{ book.num_of_pages }}</span>
+                        </li>
+                        <li>
+                            <span><b>Издательство:</b> {{ book.publisher }}</span>
+                        </li>
+                        <li>
+                            <span><b>Средний рейтинг:</b> {% get_rating book.id %}</span>
+                        </li>
+                        <li><span><b>Установить: </b></span>
                             <form action="{% url 'mainapp:add_rating' %}" method="post" name="rating" class="rating">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{ book.id }}" name="book">
@@ -48,7 +60,6 @@
                                 <label for="rating{{ v }}">{{ k }}</label>
                                 {% endfor %}
                             </form>
-                            <span>4.0</span>
                         </li>
 
                     </ul>
@@ -151,6 +162,8 @@
             .then(response => alert("Рейтинг установлен"))
             .catch(error => alert("Ошибка"))
     });
+
+
 
 
 </script>

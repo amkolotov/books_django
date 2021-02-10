@@ -1,11 +1,11 @@
 
-<h3 class="sear-head editContent">Последние добавленные</h3>
+<h4 class="sear-head mt-4">НОВИНКИ</h4>
 {% for book in last_books %}
 <div class="row my-4">
     <div class="col-md-4">
         <a href="{{ book.get_absolute_url }}"><img src="{{ book.cover.url }}" alt="book.title" class="img-fluid"></a>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 last-book">
         <a href="{{ book.get_absolute_url }}"><h5>{{ book.title }}</h5></a>
     </div>
 </div>

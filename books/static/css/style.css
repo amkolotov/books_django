@@ -7,6 +7,8 @@ body {
 
 body a {
     text-decoration: none;
+    color: #080808;
+
 }
 
 a:hover {
@@ -20,6 +22,8 @@ ul {
 
 li {
     list-style-type: none;
+    color: #8c9398;
+    letter-spacing: 1px;
 }
 
 .side-bar ul {
@@ -41,9 +45,16 @@ ul.stars li a span:hover {
     opacity: 0.8;
 }
 
+li span {
+    color: #6a6c6d;
+}
+
 p {
     text-indent: 2em;
     text-align: justify;
+}
+.last-book a {
+    color: #6a6c6d;
 }
 
 /* Checkbox stars */
@@ -86,7 +97,21 @@ p {
 .navbar {
     background-color: #dee2e6;
 }
+
+.page-item.active .page-link {
+    background-color: #8c9398;
+    border-color: #8c9398;
+}
+
+.page-link,
+.page-link:hover
+{
+    color: #6a6c6d
+}
+
 .footer {
     background-color: #dee2e6;
 }
-
+.footer p {
+    text-indent: 0;
+}
